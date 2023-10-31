@@ -36,7 +36,6 @@ function ExclusiveTabsUsingMixBlendMode({ animationSpeed }: { animationSpeed?: n
           }}
           className={cn(
             'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500',
-            // activeTab === tab.id && 'text-orange-00'
           )}
         >
           {activeTab === tab.id && (
@@ -45,7 +44,7 @@ function ExclusiveTabsUsingMixBlendMode({ animationSpeed }: { animationSpeed?: n
                 borderRadius: 9999,
               }}
               transition={{ duration: animationSpeed || 0.8 }}
-              layoutId='active-pill-blend-mode'
+              layoutId='active-pill-mix-blend-mode'
               className='bg-orange-500 absolute inset-0'
             ></motion.div>
           )}
@@ -82,7 +81,7 @@ function ExclusiveTabsUsingBgBlendMode({
                 borderRadius: 9999,
               }}
               transition={{ duration: animationSpeed || 0.8 }}
-              layoutId='active-pill-blend-mode'
+              layoutId='active-pill-bg-blend-mode'
               className='bg-orange-500 absolute inset-0'
             ></motion.div>
           )}
