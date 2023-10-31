@@ -1,4 +1,5 @@
 import {
+  ExclusiveTabsUsingBgBlendMode,
   ExclusiveTabsUsingClipPath,
   ExclusiveTabsUsingMixBlendMode,
 } from '@/components/animations/exclusive-tabs';
@@ -22,7 +23,7 @@ export default function Home() {
           using <span>background-blend-mode</span>
         </h3>
         <DisplayBox>
-          <ExclusiveTabsUsingClipPath />
+          <ExclusiveTabsUsingBgBlendMode />
         </DisplayBox>
         <h3 className='mt-8 mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
           using <span>using clip-path</span>
