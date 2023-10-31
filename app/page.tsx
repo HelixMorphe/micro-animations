@@ -1,6 +1,6 @@
 import {
-  ExclusiveTabs,
   ExclusiveTabsUsingClipPath,
+  ExclusiveTabsUsingMixBlendMode,
 } from '@/components/animations/exclusive-tabs';
 import DisplayBox from '@/components/ui/display-box';
 
@@ -16,10 +16,16 @@ export default function Home() {
         </h3>
         {/* <p className='mb-8 leading-7 [&:not(:first-child)]:mt-6'></p> */}
         <DisplayBox>
-          <ExclusiveTabs />
+          <ExclusiveTabsUsingMixBlendMode />
         </DisplayBox>
         <h3 className='mt-8 mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
-          using <span>clip-path</span>
+          using <span>background-blend-mode</span>
+        </h3>
+        <DisplayBox>
+          <ExclusiveTabsUsingClipPath />
+        </DisplayBox>
+        <h3 className='mt-8 mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
+          using <span>using clip-path</span>
         </h3>
         <DisplayBox>
           <ExclusiveTabsUsingClipPath />
