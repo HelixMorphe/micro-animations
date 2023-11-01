@@ -36,6 +36,7 @@ function ExclusiveTabsUsingMixBlendMode({ animationSpeed }: { animationSpeed?: n
           }}
           className={cn(
             'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500',
+            activeTab === tab.id && "text-orange-900"
           )}
         >
           {activeTab === tab.id && (
@@ -72,7 +73,7 @@ function ExclusiveTabsUsingBgBlendMode({
           }}
           className={cn(
             'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500',
-            activeTab === tab.id && 'text-black'
+            activeTab === tab.id && 'text-orange-900'
           )}
         >
           {activeTab === tab.id && (
@@ -172,7 +173,7 @@ function ExclusiveTabsUsingClipPath({
               setActiveTab(tab.id);
             }}
             className={cn(
-              'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500 text-black'
+              'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500 text-orange-900'
             )}
           >
             <span className='relative z-10'>{tab.label}</span>
