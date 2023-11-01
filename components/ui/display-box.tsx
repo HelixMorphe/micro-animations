@@ -2,7 +2,6 @@
 
 import React, {
   ReactElement,
-  useEffect,
   useState,
 } from 'react';
 
@@ -19,7 +18,7 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
 
   const handleSelectChange = (value: string) => {
     if (value === "1") {
-      setAnimationSpeed(0.8)
+      setAnimationSpeed(0.6)
     } else if (value === "2") {
        setAnimationSpeed(0.2);
     } else if (value === "3") {
@@ -35,10 +34,6 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
       )
     : children;
 
-  useEffect(() => {
-    console.log('value changed', animationSpeed);
-  }, [animationSpeed]);
-
   return (
     <div className='relative w-full border rounded-lg flex-col overflow-hidden'>
       <div className='absolute right-4 top-4'>
@@ -53,7 +48,7 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
           </SelectContent>
         </Select>
       </div>
-      <div className='h-[200px] bg-black/80 flex items-center justify-center'>
+      <div className='h-[200px] dark:bg-black/80 bg-zinc-50 flex items-center justify-center'>
         {enhancedChildren}
       </div>
     </div>

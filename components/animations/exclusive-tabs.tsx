@@ -43,7 +43,7 @@ function ExclusiveTabsUsingMixBlendMode({ animationSpeed }: { animationSpeed?: n
               style={{
                 borderRadius: 9999,
               }}
-              transition={{ duration: animationSpeed || 0.8 }}
+              transition={{ duration: animationSpeed || 0.6 }}
               layoutId='active-pill-mix-blend-mode'
               className='bg-orange-500 absolute inset-0'
             ></motion.div>
@@ -80,7 +80,7 @@ function ExclusiveTabsUsingBgBlendMode({
               style={{
                 borderRadius: 9999,
               }}
-              transition={{ duration: animationSpeed || 0.8 }}
+              transition={{ duration: animationSpeed || 0.6 }}
               layoutId='active-pill-bg-blend-mode'
               className='bg-orange-500 absolute inset-0'
             ></motion.div>
@@ -134,7 +134,7 @@ function ExclusiveTabsUsingClipPath({
     clipPath: `inset(0px calc(100% - (${tabDimensions.left}px + ${tabDimensions.width}px)) calc(100% - (0px + 32px)) ${tabDimensions.left}px round 999px)`,
   };
 
-  const transitionDuration = animationSpeed ? (animationSpeed * 1000).toString() + "ms" : "800ms"
+  const transitionDuration = animationSpeed ? (animationSpeed * 1000).toString() + "ms" : "600ms"
 
   return (
     <div className='flex text-sm relative'>
