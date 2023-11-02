@@ -23,39 +23,6 @@ const tabs: Tab[] = [
   { id: 5, label: 'Blog' },
 ];
 
-function ExclusiveTabsUsingMixBlendMode({ animationSpeed }: { animationSpeed?: number }) {
-  let [activeTab, setActiveTab] = useState<number>(tabs[0].id);
-
-  return (
-    <div className='flex space-x-2 text-sm'>
-      {tabs.map((tab) => (
-        <button
-          key={tab.id}
-          onClick={() => {
-            setActiveTab(tab.id);
-          }}
-          className={cn(
-            'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500',
-            activeTab === tab.id && "text-orange-900"
-          )}
-        >
-          {activeTab === tab.id && (
-            <motion.div
-              style={{
-                borderRadius: 9999,
-              }}
-              transition={{ duration: animationSpeed || 0.6 }}
-              layoutId='active-pill-mix-blend-mode'
-              className='bg-orange-500 absolute inset-0'
-            ></motion.div>
-          )}
-          <span className='relative z-10 mix-blend-exclusion'>{tab.label}</span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function ExclusiveTabsUsingBgBlendMode({
   animationSpeed,
 }: {
@@ -81,7 +48,7 @@ function ExclusiveTabsUsingBgBlendMode({
               style={{
                 borderRadius: 9999,
               }}
-              transition={{ duration: animationSpeed || 0.6 }}
+              transition={{ duration: animationSpeed || 0.2 }}
               layoutId='active-pill-bg-blend-mode'
               className='bg-orange-500 absolute inset-0'
             ></motion.div>
@@ -97,16 +64,16 @@ function ExclusiveTabsUsingClipPath({
   animationSpeed,
 }: {
   animationSpeed?: number;
-  }) {
+}) {
   let [mount, setIsMount] = useState<boolean>(false);
   let [activeTab, setActiveTab] = useState<number>(tabs[0].id);
   const [tabDimensions, setTabDimensions] = useState({ width: 0, left: 0 });
 
   useEffect(() => {
     if (!mount) {
-      setIsMount(true)
+      setIsMount(true);
     }
-  },[])
+  }, []);
 
   // Define the type of elements the ref will hold
   const tabsRef = useRef<HTMLButtonElement[]>([]);
@@ -119,7 +86,7 @@ function ExclusiveTabsUsingClipPath({
         left: tabsRef.current[index].offsetLeft,
       });
     }
-    console.log({tabsRef})
+    console.log({ tabsRef });
   };
 
   useEffect(() => {
@@ -135,7 +102,9 @@ function ExclusiveTabsUsingClipPath({
     clipPath: `inset(0px calc(100% - (${tabDimensions.left}px + ${tabDimensions.width}px)) calc(100% - (0px + 32px)) ${tabDimensions.left}px round 999px)`,
   };
 
-  const transitionDuration = animationSpeed ? (animationSpeed * 1000).toString() + "ms" : "600ms"
+  const transitionDuration = animationSpeed
+    ? (animationSpeed * 1000).toString() + 'ms'
+    : '200ms';
 
   return (
     <div className='flex text-sm relative'>
@@ -146,7 +115,8 @@ function ExclusiveTabsUsingClipPath({
             key={tab.id}
             onClick={() => selectTab(tab.id)}
             className={cn(
-              'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500 text-white', !mount && index === 0 && "bg-orange-500 text-black"
+              'relative rounded-full px-3 py-1.5 font-medium outline-2 outline-orange-500',
+              !mount && index === 0 && 'bg-orange-500 text-black'
             )}
           >
             <span className='relative z-10 bg-blend-exclusion'>
@@ -160,14 +130,17 @@ function ExclusiveTabsUsingClipPath({
         aria-hidden='true'
         style={{
           borderRadius: 9999,
-          clipPath: mount && clipPathStyle.clipPath || "",
+          clipPath: (mount && clipPathStyle.clipPath) || '',
           transitionDuration: transitionDuration,
         }}
-        className={cn('z-10 absolute top-0 left-0 hidden text-sm space-x-2', mount && "block bg-orange-500")}
+        className={cn(
+          'z-10 absolute top-0 left-0 hidden text-sm space-x-2',
+          mount && 'block bg-orange-500'
+        )}
       >
         {tabs.map((tab) => (
           <button
-            aria-hidden="true"
+            aria-hidden='true'
             key={tab.id}
             onClick={() => {
               setActiveTab(tab.id);
@@ -184,8 +157,4 @@ function ExclusiveTabsUsingClipPath({
   );
 }
 
-export {
-  ExclusiveTabsUsingBgBlendMode,
-  ExclusiveTabsUsingClipPath,
-  ExclusiveTabsUsingMixBlendMode,
-};
+export { ExclusiveTabsUsingBgBlendMode, ExclusiveTabsUsingClipPath };

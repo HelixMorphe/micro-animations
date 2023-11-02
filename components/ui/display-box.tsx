@@ -18,9 +18,9 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
 
   const handleSelectChange = (value: string) => {
     if (value === "1") {
-      setAnimationSpeed(0.6)
+      setAnimationSpeed(0.2)
     } else if (value === "2") {
-       setAnimationSpeed(0.2);
+       setAnimationSpeed(0.6);
     } else if (value === "3") {
        setAnimationSpeed(5);
     } else {
@@ -42,9 +42,9 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
             <SelectValue placeholder='Animation Speed' />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value='2'>Fast</SelectItem>
-            <SelectItem value='1'>Normal</SelectItem>
-            <SelectItem value='3'>Slow</SelectItem>
+            <SelectItem value='1'>Default</SelectItem>
+            <SelectItem value='2'>Slow</SelectItem>
+            <SelectItem value='3'>Super Slow</SelectItem>
           </SelectContent>
         </Select>
       </div>
