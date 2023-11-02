@@ -9,7 +9,7 @@ import DisplayBox from '@/components/ui/display-box';
 const ExclusionPage = () => {
   return (
     <main>
-      <div className='min-h-[calc(100vh-64px)] md:w-4/5 m-auto'>
+      <div className='container min-h-[calc(100vh-64px)] m-auto'>
         <h2 className='pt-10 text-3xl font-semibold tracking-tight transition-colors'>
           Exclusion tabs
         </h2>
