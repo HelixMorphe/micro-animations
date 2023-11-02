@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { GeistSans } from 'geist/font';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -20,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={GeistSans.className}>
         <ThemeProvider
           attribute='class'
           defaultTheme='system'
