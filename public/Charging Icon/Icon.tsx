@@ -1,6 +1,7 @@
 const Icon = () => {
     return (
       <svg
+        className=""
         width='35'
         height='17'
         viewBox='0 0 35 17'

@@ -13,13 +13,13 @@ const ExclusionPage = () => {
         <h2 className='pt-10 text-3xl font-semibold tracking-tight transition-colors'>
           Exclusion tabs
         </h2>
-        <h3 className='mt-8 mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
+        <h3 className='mt-8 text-muted-foreground mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
           using <span>background-blend-mode</span>
         </h3>
         <DisplayBox>
           <ExclusiveTabsUsingBgBlendMode />
         </DisplayBox>
-        <h3 className='mt-8 mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
+        <h3 className='mt-8 text-muted-foreground mb-6 scroll-m-20 text-xl font-medium tracking-tight'>
           using <span>clip-path</span>
         </h3>
         <DisplayBox>

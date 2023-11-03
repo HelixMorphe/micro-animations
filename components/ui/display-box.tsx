@@ -35,7 +35,7 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
     : children;
 
   return (
-    <div className='relative w-full border rounded-lg flex-col overflow-hidden'>
+    <div className='relative w-full border rounded-lg flex-col overflow-hidden sm:w-9/12 m-auto'>
       <div className='absolute right-4 top-4'>
         <Select onValueChange={handleSelectChange}>
           <SelectTrigger>
@@ -48,7 +48,7 @@ const DisplayBox = ({ children }: { children?: ReactElement }) => {
           </SelectContent>
         </Select>
       </div>
-      <div className='h-[200px] dark:bg-black/80 bg-zinc-50 flex items-center justify-center'>
+      <div className='h-[200px] dark:bg-zinc-500/10 bg-zinc-50 flex items-center justify-center '>
         {enhancedChildren}
       </div>
     </div>
