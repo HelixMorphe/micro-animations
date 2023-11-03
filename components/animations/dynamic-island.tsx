@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   AnimatePresence,
@@ -35,9 +38,11 @@ const DynamicIsland = () => {
         initial='idle'
         animate={mode}
         transition={{ type: 'spring', damping: 12 }}
-        className='bg-black h-9 shadow-lg flex items-center px-4'
+        className='bg-black h-9 shadow-lg shadow-black/30 dark:shadow-black/50 flex items-center px-4'
       >
-        <AnimatePresence>{mode === 'charging' && <Charging />}</AnimatePresence>
+        <AnimatePresence>
+          {mode === 'charging' && <AnimateCharging setMode={setMode} />}
+        </AnimatePresence>
       </motion.div>
 
       <div className='text-center mt-16 flex gap-4 w-full justify-center'>
@@ -75,9 +80,22 @@ const DynamicIsland = () => {
 
 export default DynamicIsland;
 
+const AnimateCharging = ({ setMode }: { setMode: any }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setMode('idle');
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  
+
+  return <Charging />;
+};
+
 const Charging = () => {
   return (
-    <motion.div className='w-full flex justify-between items-center'>
+    <motion.div className='w-[314px] flex justify-between items-center'>
       <motion.p
         initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.25rem)' }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
@@ -87,7 +105,7 @@ const Charging = () => {
           transition: { duration: 0.1 },
         }}
         transition={{ delay: 0.1 }}
-        className="text-white"
+        className='text-white'
       >
         Charging
       </motion.p>
