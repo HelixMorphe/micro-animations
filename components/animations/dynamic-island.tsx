@@ -1,20 +1,43 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useState } from 'react';
 
 import {
   AnimatePresence,
   motion,
 } from 'framer-motion';
 
-import ChargingIcon from '../../public/Charging Icon/Icon';
 import { Button } from '../ui/button';
+import AnimateCharging from './animate-charging';
+import AnimateTimer from './animate-timer';
 
-type Mode = 'idle' | 'charging' | 'timer';
+export type Mode = 'idle' | 'charging' | 'timer' | 'timerMinimized';
+
+type ModeInfo = {
+  id: number;
+  mode: Mode;
+  label: String;
+};
+
+const modeInfo: ModeInfo[] = [
+  {
+    id: 1,
+    mode: 'idle',
+    label: 'Idle',
+  },
+  {
+    id: 2,
+    mode: 'charging',
+    label: 'Charging',
+  },
+  {
+    id: 3,
+    mode: 'timer',
+    label: 'Timer',
+  },
+];
 
 const DynamicIsland = () => {
   const [mode, setMode] = useState<Mode>('idle');
+
   const variants = {
     idle: {
       width: 122,
@@ -29,6 +52,22 @@ const DynamicIsland = () => {
       height: 82,
       borderRadius: 50,
     },
+    timerMinimized: {
+      width: 236,
+      height: 32,
+      borderRadius: 32
+    }
+  };
+
+  const animateMode = () => {
+    switch (mode) {
+      case 'idle':
+        return <></>;
+      case 'charging':
+        return <AnimateCharging setMode={setMode} />;
+      case "timer":
+        return <AnimateTimer setMode={setMode}/>;
+    }
   };
 
   return (
@@ -40,89 +79,25 @@ const DynamicIsland = () => {
         transition={{ type: 'spring', damping: 12 }}
         className='bg-black h-9 shadow-lg shadow-black/30 dark:shadow-black/50 flex items-center px-4'
       >
-        <AnimatePresence>
-          {mode === 'charging' && <AnimateCharging setMode={setMode} />}
-        </AnimatePresence>
+        <AnimatePresence>{animateMode()}</AnimatePresence>
       </motion.div>
 
       <div className='text-center mt-16 flex gap-4 w-full justify-center'>
-        <Button
-          onClick={() => {
-            setMode('idle');
-          }}
-          className='bg-zinc-50 dark:bg-zinc-900'
-          variant={'outline'}
-        >
-          Idle
-        </Button>
-        <Button
-          onClick={() => {
-            setMode('charging');
-          }}
-          className='bg-zinc-50 dark:bg-zinc-900'
-          variant={'outline'}
-        >
-          Charging
-        </Button>
-        <Button
-          onClick={() => {
-            setMode('timer');
-          }}
-          className='bg-zinc-50 dark:bg-zinc-900'
-          variant={'outline'}
-        >
-          Timer
-        </Button>
+        {modeInfo.map(({ id, label, mode }) => (
+          <Button
+            key={id}
+            onClick={() => {
+              setMode(mode);
+            }}
+            className='bg-zinc-50 dark:bg-zinc-900'
+            variant={'outline'}
+          >
+            {label}
+          </Button>
+        ))}
       </div>
     </>
   );
 };
 
 export default DynamicIsland;
-
-const AnimateCharging = ({ setMode }: { setMode: any }) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setMode('idle');
-    }, 2500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  
-
-  return <Charging />;
-};
-
-const Charging = () => {
-  return (
-    <motion.div className='w-[314px] flex justify-between items-center'>
-      <motion.p
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.5rem)' }}
-        animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
-        exit={{
-          opacity: 0,
-          filter: 'blur(0.25rem)',
-          transition: { duration: 0.1 },
-        }}
-        transition={{ delay: 0.1 }}
-        className='text-white'
-      >
-        Charging
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.5rem)' }}
-        animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
-        exit={{
-          opacity: 0,
-          filter: 'blur(0.25rem)',
-          transition: { duration: 0.1 },
-        }}
-        transition={{ delay: 0.1 }}
-        className='flex items-center gap-2'
-      >
-        <p className={`text-[#8DEB92] font-semibold`}>85%</p>
-        <ChargingIcon />
-      </motion.div>
-    </motion.div>
-  );
-};
