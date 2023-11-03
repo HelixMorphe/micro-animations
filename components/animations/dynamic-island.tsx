@@ -97,7 +97,7 @@ const Charging = () => {
   return (
     <motion.div className='w-[314px] flex justify-between items-center'>
       <motion.p
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.25rem)' }}
+        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.5rem)' }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
         exit={{
           opacity: 0,
@@ -110,7 +110,7 @@ const Charging = () => {
         Charging
       </motion.p>
       <motion.div
-        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.25rem)' }}
+        initial={{ opacity: 0, scale: 0.5, filter: 'blur(0.5rem)' }}
         animate={{ opacity: 1, scale: 1, filter: 'blur(0)' }}
         exit={{
           opacity: 0,
