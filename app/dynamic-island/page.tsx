@@ -36,7 +36,7 @@ const DynamicIslandPage = () => {
         On iPhone 14 Pro and later, you can check alerts and current activity in
         progress—such as a Voice Memo recording in progress, an AirDrop. The
         Dynamic Island appears at the top of the{' '}
-        <span className='text-white'>iPhone</span> screen whenever your iPhone
+        <span className='text-foreground'>iPhone</span> screen whenever your iPhone
         is unlocked.
       </motion.p>
       <div className='mt-20 border sm:w-9/12 m-auto rounded-lg bg-zinc-100 dark:bg-zinc-500/10 p-8 flex flex-col items-center justify-center'>

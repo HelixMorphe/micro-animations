@@ -22,8 +22,8 @@ const Icon = () => {
             y2='16.7373'
             gradientUnits='userSpaceOnUse'
           >
-            <stop stop-color='#8DFC63' />
-            <stop offset='1' stop-color='#97F5B4' />
+            <stop stopColor='#8DFC63' />
+            <stop offset='1' stopColor='#97F5B4' />
           </linearGradient>
         </defs>
       </svg>
