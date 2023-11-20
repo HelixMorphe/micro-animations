@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   AnimatePresence,
-  motion,
+  useAnimate,
 } from 'framer-motion';
 
 import { Button } from '../ui/button';
@@ -33,10 +36,13 @@ const modeInfo: ModeInfo[] = [
     mode: 'timer',
     label: 'Timer',
   },
+
 ];
 
 const DynamicIsland = () => {
   const [mode, setMode] = useState<Mode>('idle');
+
+  const [scope, animate] = useAnimate();
 
   const variants = {
     idle: {
@@ -55,8 +61,8 @@ const DynamicIsland = () => {
     timerMinimized: {
       width: 236,
       height: 32,
-      borderRadius: 32
-    }
+      borderRadius: 32,
+    },
   };
 
   const animateMode = () => {
@@ -65,23 +71,47 @@ const DynamicIsland = () => {
         return <></>;
       case 'charging':
         return <AnimateCharging setMode={setMode} />;
-      case "timer":
-        return <AnimateTimer setMode={setMode}/>;
+      case 'timer':
+        return <AnimateTimer setMode={setMode} />;
     }
   };
 
+  useEffect(() => {
+    if (mode === 'idle') {
+      animate(
+        scope.current,
+        { width: 122, borderRadius: 32, height: 36 },
+        { type: 'spring', damping: 12 }
+      );
+    } else if (mode === 'charging') {
+      animate(
+        scope.current,
+        { width: 314, borderRadius: 32, height: 36 },
+        { type: 'spring', damping: 12 }
+      );
+    } else if (mode === 'timer') {
+      animate(
+        scope.current,
+        { width: 366, borderRadius: 50, height: 82 },
+        { type: 'spring', damping: 12 }
+      );
+    } else if (mode === 'timerMinimized') {
+      animate(
+        scope.current,
+        { width: 236, borderRadius: 32, height: 36 },
+        { type: 'spring', damping: 12 }
+      );
+    }
+  }, [mode]);
+
   return (
     <>
-      <motion.div
-        variants={variants}
-        initial='idle'
-        animate={mode}
-        transition={{ type: 'spring', damping: 12 }}
-        className='bg-black h-9 shadow-lg shadow-black/30 dark:shadow-black/50 flex items-center px-4'
+      <div
+        ref={scope}
+        className='h-9 bg-black w-[122px] shadow-lg shadow-black/30 dark:shadow-black/50 rounded-[32px] flex items-center px-4'
       >
         <AnimatePresence>{animateMode()}</AnimatePresence>
-      </motion.div>
-
+      </div>
       <div className='text-center mt-16 flex gap-4 w-full justify-center'>
         {modeInfo.map(({ id, label, mode }) => (
           <Button
